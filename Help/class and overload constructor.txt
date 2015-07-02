@@ -1,0 +1,103 @@
+﻿OVERLOAD CONSTRUCTOR 
+
+আমরা একটা class এর মধ্যে একটা object কে construct করি তাইনা ?
+এখন ধর , একটা object কে তো অনেক ভাবেই construct করা যায় । তুমি শুধু কল্পনা কর , তুমি আজকের তারিখ টা নিবা , দিন , মাস , বছর সহ । 
+তাহলে দুইটা উপায় আছে  , আমরা একটা string এর মধ্যে পুরা date টা ইনপুট নিতে পারি । অথবা আমরা আলাদা আলাদা ভাবে day , month , year input নিতে পারি । 
+
+তাইনা ? 
+
+আচ্ছা , তাহলে আমরা এভাবে বলতে পারি যে , প্রত্তেক টা আলাদা আলাদা way এর জন্য  Overloaded constructor ব্যাবহার করব । 
+
+ইন্টারনেটে একটা সুন্দর লাইন পেলাম , 
+Constructors Overloading are used to increase the flexibility of a class by having more number of constructor for a single class. By having more than one way of initializing objects can be done using overloading constructors.
+
+তাহলে বুঝে গেলা ? 
+
+উদাহরন টা দেখ । 
+
+আমরা বিভিন্ন সময় বিভিন্ন ভাবে x, y এর মান show করব ।
+
+#include <iostream.h>
+  class Overclass 
+    { 
+    	public: 
+    	int x; 
+    	int y;   
+      Overclass() { x = y = 0; } 
+    	Overclass(int a) { x = y = a; } 
+   	Overclass(int a, int b) { x = a; y = b; } 
+    };   
+
+  int main() 
+     {   
+     	   Overclass A;         
+       Overclass A1(4);    
+       Overclass A2(8, 12); 
+
+       cout << "Overclass A's x,y value:: " << 
+             A.x  << " , "<< A.y << "\n"; 
+       cout << "Overclass A1's x,y value:: "<< 
+             A1.x << " ,"<< A1.y << "\n"; 
+       cout << "Overclass A2's x,y value:; "<< 
+             A2.x << " , "<< A2.y << "\n"; 
+       return 0; 
+}
+
+OUTPUT ==>>
+   Overclass A's x,y value:: 0 , 0
+   Overclass A1's x,y value:: 4 ,4
+   Overclass A2's x,y value:; 8 , 12  
+
+
+
+
+C++ the complete reference বই এর একটি  উদাহরণ ঃ
+
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+class date
+{
+
+    int day, month, year;
+public:
+
+    date(char *d);
+    date(int m, int d, int y);
+    void show_date();
+};
+
+/* Initialize using string.*/
+date::date(char *d)
+{
+    sscanf(d, "%d%*c%d%*c%d", &month, &day, &year); /* sscanf এর কাজ হল , string থেকে integer / floating / character portion গুলো কে প্রয়োজনমত আলাদা করে সেভ করা */ 
+}
+
+/* Initialize using integers.*/
+
+date::date(int m, int d, int y)
+{
+    day = d;
+    month = m;
+    year = y;
+}
+
+void date::show_date()
+{
+    cout << month << "/" << day;
+    cout << "/" << year << "\n";
+}
+
+int main()
+{
+    date ob1(12, 4, 2001), ob2("10/2/2001");
+    ob1.show_date();
+    ob2.show_date();
+    return 0;
+}
+
+OUTPUT ==>>
+
+12/4/2001
+10/2/2001

@@ -1,0 +1,6 @@
+1
+abcAGbcbd
+3
+bcA
+abcAG
+cA
